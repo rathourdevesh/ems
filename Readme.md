@@ -17,7 +17,7 @@ docker-compose up
 
 
 *Process Flow*
-
+```
 elevator creation
     req-
     - no of floors 
@@ -82,11 +82,11 @@ update maintaince:
     process-
     - if true update [maintaince, up, 0, stops[] ]
     - if false update state = stopped
-
+```
 
 *curls*
-
-curl --location --request POST 'http://127.0.0.1:8000/ems/create-elavators' \
+```
+curl --location --request POST '{host:port}/ems/create-elavators' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "floors": 9,
@@ -94,25 +94,26 @@ curl --location --request POST 'http://127.0.0.1:8000/ems/create-elavators' \
     "floor_time": 3
 }'
 
-curl --location --request GET 'http://127.0.0.1:8000/ems/get-elavators'
+curl --location --request GET '{host:port}/ems/get-elavators'
 
-curl --location --request POST 'http://127.0.0.1:8000/ems/assign-elavator' \
+curl --location --request POST '{host:port}/ems/assign-elavator' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "requested_floor": 4,
     "requested_action": "moving up"
 }'
 
-curl --location --request POST 'http://127.0.0.1:8000/ems/update-floor' \
+curl --location --request POST '{host:port}/ems/update-floor' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "elevator_no": 0,
     "destination_floor": 7
 }'
 
-curl --location --request PUT 'http://127.0.0.1:8000/ems/mark-maintaince' \
+curl --location --request PUT '{host:port}/ems/mark-maintaince' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "elevator_no": 0,
     "mark_maintainence": true
 }'
+```
